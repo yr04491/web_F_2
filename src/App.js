@@ -31,25 +31,41 @@ function App() {
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
-      if (currentScrollY <= 0) {
+      // スクロールが少ない場合や一番上の場合は常に表示
+      if (currentScrollY <= 10) {
         setShowHeader(true);
         setShowNav(true);
-      } else if (currentScrollY > lastScrollY.current) {
+      }
+      else if (currentScrollY > lastScrollY.current + 5) {
         setShowHeader(false); // 下方向で非表示
         setShowNav(false);
-      } else {
-        setShowHeader(true); // 上方向で表示
+      } if (currentScrollY < lastScrollY.current - 5) {
+        // 上方向に5px以上スクロールした場合に表示
+        setShowHeader(true);
         setShowNav(true);
       }
       lastScrollY.current = currentScrollY;
     };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
+
+    // スロットリング関数を追加してパフォーマンスを改善
+    let ticking = false;
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    };
+
+    window.addEventListener('scroll', scrollListener);
+    return () => window.removeEventListener('scroll', scrollListener);
   }, []);
 
   return (
     <Router>
-      <div className="App" style={{ paddingTop: '104px' }}>
+      <div className="App" style={{ paddingTop: '110px' }}>
         <Header className={showHeader ? '' : 'hide-header'} />
         <Navigation className={showNav ? '' : 'hide-nav'} />
         <Routes>

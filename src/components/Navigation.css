@@ -13,6 +13,7 @@
   height: 48px;
   z-index: 1000;
   align-items: center;
+  transition: top 0.3s;
 }
 .nav-item {
   color: #333;
@@ -29,5 +30,4 @@
 }
 .hide-nav {
   top: -48px;
-  transition: top 0.3s;
 } 
