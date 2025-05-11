@@ -10,7 +10,8 @@
   top: 56px;
   left: 0;
   width: 100%;
-  height: 48px;
+  height: auto;  /* 高さを自動に */
+  min-height: 48px;
   z-index: 1000;
   align-items: center;
   transition: top 0.3s;
@@ -29,5 +30,5 @@
   color: #fff;
 }
 .hide-nav {
-  top: -48px;
+  top: -120px;
 } 

@@ -65,7 +65,7 @@ function App() {
 
   return (
     <Router>
-      <div className="App" style={{ paddingTop: '110px' }}>
+      <div className="App" style={{ paddingTop: '180px' }}>
         <Header className={showHeader ? '' : 'hide-header'} />
         <Navigation className={showNav ? '' : 'hide-nav'} />
         <Routes>
