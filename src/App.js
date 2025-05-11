@@ -64,7 +64,7 @@ function App() {
   }, []);
 
   return (
-    <Router>
+    <Router basename={process.env.PUBLIC_URL}>
       <div className="App" style={{ paddingTop: '180px' }}>
         <Header className={showHeader ? '' : 'hide-header'} />
         <Navigation className={showNav ? '' : 'hide-nav'} />
